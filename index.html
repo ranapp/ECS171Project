@@ -15,12 +15,14 @@
 
 
   <main>
-    <section>
-      <h2>About Me</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu imperdiet arcu. In non eros dolor.</p>
-    </section>
-
-    <button type="submit" action="{{ url_for('predict')}}" method="post"> Logistic K-Fold </button>
+    <form action="{{ url_for('predict')}}" method="post">
+        <p>What is your age?</p>
+         <input type="number" name="Age" placeholder="Enter your age" 			  		required="required" /><br> 
+        <p>What is your gender?</p>
+         <label><input type="radio" name="Sex" value="1" required="required" 		/>Male</label>
+            <label><input type="radio" name="Sex" value="0" required="required" 		/>Female</label><br>
+         <button type="submit">Predict</button>
+    </form>
     <p> {{ prediction }} </p>
 
   </main>
