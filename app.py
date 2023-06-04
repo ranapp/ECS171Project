@@ -55,7 +55,7 @@ def predict():
     prediction = model.predict(input_df_encoded) 
     result = prediction[0]
 
-    return render_template('index.html', prediction=result)
+    return render_template('results.html', prediction=result)
 
 if __name__ == "__main__":
     app.run(debug=True)
