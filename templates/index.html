@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Simple Page</title>
+  <style>
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Predict College Dropout Status</h1>
+  </header>
+
+
+  <main>
+    <form action="{{ url_for('predict')}}" method="post">
+        <p>What is the application mode?</p>
+         <input type="number" step = "0.01" name="mode" placeholder="Enter the application mode:" 			  		required="required" /><br> 
+        <p>What is the application order?</p>
+        <input type="number" step = "0.01" name="order" placeholder="Enter the application order:" 			  		required="required" /><br> 
+        <p>What is the course?</p>
+        <input type="number" step = "0.01" name="course" placeholder="Enter the Course:" 			  		required="required" /><br> 
+        <p>What is the attendance time?</p>
+            <label><input type="radio" name="attendance" value="1" required="required" 		/>Day</label>
+            <label><input type="radio" name="attendance" value="0" required="required" 		/>Evening</label><br>
+        <p>What is the previous qualification?</p>
+        <input type="number" step = "0.01" name="qualification" placeholder="Enter the previous qualification:" required="required" /><br>
+        <p>What is the mother's qualification?</p>
+        <input type="number" step = "0.01" name="momqual" placeholder="Enter the mother's qualification:" 			  		required="required" /><br> 
+        <p>What is the father's qualification?</p>
+        <input type="number" step = "0.01" name="fatherqual" placeholder="Enter the father's qualification:" 			  		required="required" /><br> 
+        <p>What is the mother's occupation?</p>
+        <input type="number" step = "0.01" name="momocc" placeholder="Enter the mother's occupation:" 			  		required="required" /><br> 
+        <p>What is the father's occupation?</p>
+        <input type="number" step = "0.01" name="fatheroccu" placeholder="Enter the father's occupation:" 			  		required="required" /><br> 
+        <p>What is the displacement?</p>
+        <input type="number" step = "0.01" name="displaced" placeholder="Enter the displacement:" 			  		required="required" /><br> 
+        <p>What is the debtor?</p>
+        <input type="number" step = "0.01" name="debtor" placeholder="Enter the debtor:" 			  		required="required" /><br> 
+        <p>What is the Tuition fees up to date?</p>
+        <input type="number" step = "0.01" name="tuition" placeholder="Enter the Tuition fees up to date:" 			  		required="required" /><br> 
+        <p>What is the gender?</p>
+            <label><input type="radio" name="gender" value="1" required="required" 		/>Male</label>
+            <label><input type="radio" name="gender" value="0" required="required" 		/>Female</label><br>
+        <p>Scholarship Holder?</p>
+        <input type="number" step = "0.01" name="scholarship" placeholder="Enter the Scholarship Status:" 			  		required="required" /><br> 
+        <p>What is the age at enrollment?</p>
+        <input type="number" step = "0.01" name="age" placeholder="Enter the age at enrollment:" 			  		required="required" /><br> 
+        <p>What are the Curricular units 1st sem (credited)?</p>
+        <input type="number" step = "0.01" name="sem1credit" placeholder="Enter the Curricular units 1st sem (credited):" 			  		required="required" /><br> 
+        <p>What are the Curricular units 1st sem (enrolled)?</p>
+        <input type="number" step = "0.01" name="sem1enrolled" placeholder="Enter the Curricular units 1st sem (enrolled):" 			  		required="required" /><br> 
+        <p>What are the Curricular units 1st sem (evaluations)?</p>
+        <input type="number" step = "0.01" name="sem1eval" placeholder="Enter the Curricular units 1st sem (evaluations):" 			  		required="required" /><br> 
+        <p>What are the Curricular units 1st sem (approved)?</p>
+        <input type="number" step = "0.01" name="sem1approved" placeholder="Enter the Curricular units 1st sem (approved):" 			  		required="required" /><br>
+        <p>What are the Curricular units 1st sem (grade)?</p>
+        <input type="number" step = "0.01" name="sem1grade" placeholder="Enter the Curricular units 1st sem (grade):" 			  		required="required" /><br>
+        <p>What are Curricular units 1st sem (without evaluations)?</p>
+        <input type="number" step = "0.01" name="sem1woeval" placeholder="Enter the Curricular units 1st sem (without evaluations):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (credited)?</p>
+        <input type="number" step = "0.01" name="sem2credit" placeholder="Enter the Curricular units 2nd sem (credited):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (enrolled)?</p>
+        <input type="number" step = "0.01" name="sem2enroll" placeholder="Enter the Curricular units 2nd sem (enrolled):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (evaluations)?</p>
+        <input type="number" step = "0.01" name="sem2eval" placeholder="Enter the Curricular units 2nd sem (evaluations):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (approved)?</p>
+        <input type="number" step = "0.01" name="sem2approved" placeholder="Enter the Curricular units 2nd sem (approved):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (grade)?</p>
+        <input type="number" step = "0.01" name="sem2grade" placeholder="Enter the Curricular units 2nd sem (grade):" 			  		required="required" /><br>
+        <p>What are the Curricular units 2nd sem (without evaluations)?</p>
+        <input type="number" step = "0.01" name="sem2woeval" placeholder="Enter theCurricular units 2nd sem (without evaluations):" 			  		required="required" /><br>
+        <p>What is the Unemployment rate?</p>
+        <input type="number" step = "0.01" name="unemployment" placeholder="Enter the Unemployment rate:" 			  		required="required" /><br>
+        <p>What is Inflation rate?</p>
+        <input type="number" step = "0.01" name="inflation" placeholder="Enter the Inflation rate:" 			  		required="required" /><br>
+        <p>What is the GDP?</p>
+        <input type="number" step = "0.01" name="gdp" placeholder="Enter the GDP:" 			  		required="required" /><br>
+        
+        <button type="submit">Predict</button>
+    </form>
+    <p> {{prediction}} </p>
+
+  </main>
+
+</body>
+</html>

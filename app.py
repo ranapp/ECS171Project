@@ -7,16 +7,9 @@ import pickle
 
 app = Flask(__name__)
 
-model = pickle.load(open('models/model.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/predict',methods=['POST'])
-def predict():
-    int_features = [int(x) for x in request.form.values()]
-    labs = ['Application mode', 'Application order', 'Course',
+labs = ['Application mode', 'Application order', 'Course',
        'Daytime/evening attendance', 'Previous qualification',
        "Mother's qualification", "Father's qualification",
        "Mother's occupation", "Father's occupation", 'Displaced', 'Debtor',
@@ -33,42 +26,33 @@ def predict():
        'Curricular units 2nd sem (approved)',
        'Curricular units 2nd sem (grade)',
        'Curricular units 2nd sem (without evaluations)', 'Unemployment rate',
-       'Inflation rate', 'GDP', 'Target']
-    
-    cat_labs = ['Application mode', 'Course',
+       'Inflation rate', 'GDP']
+
+cat_labs = ['Application mode', 'Course',
        'Daytime/evening attendance', 'Previous qualification',
        "Mother's qualification", "Father's qualification",
        "Mother's occupation", "Father's occupation", 'Displaced', 'Debtor',
         'Gender', 'Scholarship holder']
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/predict',methods=['POST'])
+def predict():
+    int_features = [float(x) for x in request.form.values()]
+
+    input_data = pd.DataFrame([int_features], columns=labs)
+    input_df_encoded = pd.get_dummies(input_data, columns=cat_labs)
+    ohedf = pd.read_csv('OHEdata.csv')
+    del ohedf[ohedf.columns[0]]
+
+    input_df_encoded = input_df_encoded.reindex(columns=ohedf.columns, fill_value=0)
+
+    input_df_encoded = input_df_encoded.drop(columns=['Target'], errors='ignore')
     
-    cats = ['Marital status',	'Application mode', 'Daytime/evening attendance',	'Previous qualification', 'Nacionality',	"Mother's qualification",	"Father's qualification",	"Mother's occupation", \
-         "Father's occupation", 'Debtor', 'Gender',	'Scholarship holder', 'Course', 'International','Tuition fees up to date', 'Educational special needs','Displaced'] 
-    column_names = df_ohe.columns.tolist()
-    cats_set = set(cats)
-    names_set = set(column_names)
 
-    cats = names_set.intersection(cats_set)
-    print("Unique elements:")
-    for cat in cats:
-        print(df_ohe[cat].unique()) 
-    
-    input_df = pd.DataFrame([int_features], columns=labs)
-    input_df_encoded = pd.get_dummies(input_df, columns=cat_labs)
-    input_df_encoded = input_df_encoded.reindex(columns=labs[:-1], fill_value=0)
-
-    column_names = df_ohe.columns.tolist()
-
-    common_strings = names_set.intersection(cats_set)
-
-    # numerical attributes
-    nats = [item for item in names_set if item not in common_strings]
-    nats.remove('Target')
-
-
-
-
-
-    prediction = model.predict(features) 
+    prediction = model.predict(input_df_encoded) 
     result = prediction[0]
 
     return render_template('index.html', prediction=result)
