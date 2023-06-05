@@ -1,0 +1,33 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    text-align: center;
+  }
+
+  /* h1 {
+    white-space: nowrap;
+    overflow: hidden;
+  } */
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+   
+  }
+  
+  .container {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
