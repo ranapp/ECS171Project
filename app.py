@@ -40,9 +40,31 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
+    #choose only the most important features to test (everything else stays same) based on exploratory data analysis
     int_features = [float(x) for x in request.form.values()]
 
-    input_data = pd.DataFrame([int_features], columns=labs)
+    #hard-coded data for the demo
+    arr = [1, 4, 12, 0, 1, 13, 27, 10, 8, 1, 0, 1, 1, 0, 18, 0, 6, 9, 6, 12.2, 0, 0, 6, 6, 6, 13.5, 0, 12.7, 1.4, -1.7]
+    #tuition fees
+    arr[11] = int_features[0]
+    #scholarship holder
+    arr[13] = int_features[1]
+    # 1st sem enrolled
+    arr[16] = int_features[2]
+    #1st sem approved
+    arr[18] = int_features[3]
+    #2nd sem enrolled
+    arr[22] = int_features[4]
+    #2nd sem evaluations
+    arr[23] = int_features[5]
+    #2nd sem approved
+    arr[24] = int_features[6]
+    #unemployment rate
+    arr[28] = int_features[7]
+
+
+    #one-hot encoding of data to fit model
+    input_data = pd.DataFrame([arr], columns=labs)
     input_df_encoded = pd.get_dummies(input_data, columns=cat_labs)
     ohedf = pd.read_csv('OHEdata.csv')
     del ohedf[ohedf.columns[0]]
@@ -55,7 +77,20 @@ def predict():
     prediction = model.predict(input_df_encoded) 
     result = prediction[0]
 
-    return render_template('results.html', prediction=result)
+
+    #map number to string
+
+    mapping = {
+    0: "Dropout",
+    1: "Graduate",
+    2: "Enrolled",
+    }
+
+    result_str = mapping.get(result, "Unknown") 
+
+    return render_template('results.html', prediction=result_str)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
