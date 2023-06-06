@@ -1,8 +1,22 @@
 # ECS171Project Group 19
 
 ## Project_Group19.ipynb
-it contains all EDA part, training models and the results.
+Contains all EDA part, training models and the results.
+
+## Dataset
+dataset.csv contains the data used for this project. 
 
 ## Frontend
+
+To run the frontend, run python app.py in the terminal. 
+
+folders /static and /templates contain the HTML and CSS for the frontend. 
+app.py contains the code for the backend. 
+
+OHEdata.csv contains the one hot encoded data done in the exploratory data analysis to be used for the backend. 
+
+model.pkl contains the logistic regression model used to make predictions for the frontend. 
+
 This is a link about frontend presentation.
 (https://www.youtube.com/watch?v=4D0Ux4UtuYw)
+
