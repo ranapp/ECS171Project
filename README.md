@@ -20,3 +20,7 @@ model.pkl contains the logistic regression model used to make predictions for th
 This is a link about frontend presentation.
 (https://www.youtube.com/watch?v=4D0Ux4UtuYw)
 
+## Project Visuals
+
+Contained in folder /project_visuals, contains report, demo slides, and roadmap
+
