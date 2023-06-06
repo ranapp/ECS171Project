@@ -1,7 +1,7 @@
 # ECS171Project Group 19
 
-## Project_Group19.ipynb
-Contains all EDA, data preprocessing, training models and the results.
+## Machine Learning Part
+Project_Group19.ipynb contains all EDA, data preprocessing, training models and the results.
 
 ## Dataset
 dataset.csv contains the data used for this project. 
