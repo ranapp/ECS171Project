@@ -1,10 +1,15 @@
 # ECS171Project Group 19
 
+
+## Project Description
+College education is an important part of many people’s lives. To many people it is one of the biggest opportunities that can jumpstart someone’s career and livelihood. However, everyone that goes to college comes from different backgrounds and live in different ways while at college. Our machine learning models train data to predict the graduation results of students from various backgrounds.
+
 ## Machine Learning Part
 Project_Group19.ipynb contains all EDA, data preprocessing, training models and the results.
 
 ## Dataset
 dataset.csv contains the data used for this project. 
+This datasets contains 35 attributes, and "target" column have three elements: "dropout", "graduate", "enrolled".
 
 ## Frontend
 
